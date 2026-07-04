@@ -7,7 +7,7 @@
 We trained a classifier to tell apart five neurodegenerative diseases from their research abstracts.
 What it got wrong turned out to be more interesting than what it got right.
 
-The model scores 93% on Dementia — and 0% on Parkinson's. That is not a bug.
+The model scores 93% on Dementia and 0% on Parkinson's. That is not a bug.
 It is a direct reflection of how these diseases share vocabulary in the scientific literature,
 and it produced a semantic map of neurodegeneration that no one programmed.
 
@@ -55,7 +55,7 @@ pip install requests pandas numpy nltk scikit-learn xgboost shap matplotlib seab
 ```
 
 > Always use **Kernel → Restart & Run All** for each notebook.
-> Do not run cells out of order — each notebook depends on files from the previous one.
+> Do not run cells out of order, each notebook depends on files from the previous one.
 
 ---
 
@@ -69,7 +69,7 @@ pip install requests pandas numpy nltk scikit-learn xgboost shap matplotlib seab
 | `d` | ALS | amyotrophic lateral sclerosis machine learning OR deep learning |
 | `e` | Huntington's | Huntington's disease machine learning OR deep learning OR biomarker |
 
-- **1,000 records total** — 200 per disease
+- **1,000 records total**, 200 per disease
 - **Source:** PubMed E-utilities API (free, no key required)
 - **Text:** Title + abstract, trimmed to ~100 words per record
 - **Split:** 70% train / 15% validation / 15% test — stratified, `random_state=42`
@@ -96,7 +96,7 @@ Applied to `df_trim["text"]` → `df_trim["clean_text"]`:
 | BOW | `max_features=5000, ngram_range=(1,2)` | (700, 5000) |
 | Hard (degradation) | `max_features=3000`, 40-word truncation | (800, 3000) |
 
-All vectorizers fitted on training data only — never on validation or test.
+All vectorizers fitted on training data only, never on validation or test.
 
 ---
 
@@ -113,7 +113,7 @@ All vectorizers fitted on training data only — never on validation or test.
 | SGD | 0.6171 | 0.3400 |
 | XGBoost | 0.6214 | 0.3200 |
 
-**Champion:** SVM (`LinearSVC`) — highest validation accuracy.
+**Champion:** SVM (`LinearSVC`), highest validation accuracy.
 
 ### 10-Fold Cross-Validation (SVM)
 
@@ -124,7 +124,7 @@ All vectorizers fitted on training data only — never on validation or test.
 | Best fold | 0.43 |
 | Worst fold | 0.23 |
 
-### Test Set — Classification Report (SVM)
+### Test Set - Classification Report (SVM)
 
 | Class | Precision | Recall | F1 | Support |
 |-------|-----------|--------|----|---------|
@@ -163,7 +163,7 @@ All vectorizers fitted on training data only — never on validation or test.
 Average accuracy hides a range from 0% (Parkinson's) to 93% (Dementia).
 
 **2. Parkinson's has no linguistic home.**
-Every Parkinson's test paper was predicted as either Alzheimer's or ALS — never as Dementia or Huntington's.
+Every Parkinson's test paper was predicted as either Alzheimer's or ALS, never as Dementia or Huntington's.
 It sits at the intersection of motor language (shared with ALS) and cognitive language (shared with AD),
 mirroring a known clinical ambiguity around Lewy-body dementia.
 
@@ -172,12 +172,12 @@ Vascular and frontotemporal terminology does not appear in the other four diseas
 The model draws a clean boundary almost every time.
 
 **4. The confusion matrix is a semantic distance map.**
-Top confusion pairs — PD↔ALS (26 errors), AD↔PD (23 errors) — reflect real co-morbidity
+Top confusion pairs, PD↔ALS (26 errors), AD↔PD (23 errors), reflect real co-morbidity
 and shared pathological mechanisms, not random noise.
 
 **5. 35% accuracy is a finding, not a failure.**
 Random baseline for 5 classes is 20%. The model learns real signal (+15pp).
-The ceiling is set by how similarly the research community writes about these diseases —
+The ceiling is set by how similarly the research community writes about these diseases,
 a linguistic ceiling, not a modelling one.
 
 ---
@@ -203,12 +203,12 @@ Full misclassified records saved to `misclassified_records.csv`.
 `shap.LinearExplainer` on SVM, 50 test samples.
 
 Key findings from mean |SHAP| per class:
-- **Huntington's** — dominated by genetic/trial language (canal, binding, median). Completely distinct from other diseases.
-- **Dementia** — clinical sociodemographic, voxel, decade life — specific neuroimaging + epidemiology vocabulary.
-- **AD, PD, ALS** — share generic ML terms (depth, current state, paired data) — explaining their high mutual confusion.
+- **Huntington's**, dominated by genetic/trial language (canal, binding, median). Completely distinct from other diseases.
+- **Dementia**, clinical sociodemographic, voxel, decade life, specific neuroimaging + epidemiology vocabulary.
+- **AD, PD, ALS**, share generic ML terms (depth, current state, paired data), explaining their high mutual confusion.
 
 ---
 
 ## Authors
 
-Group DSA_202101_1 · DTI5125 Data Science Applications · Summer 2026
+AbduAziz | Lakeesha | Lamine
