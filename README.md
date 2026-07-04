@@ -84,7 +84,7 @@ Applied to `df_trim["text"]` → `df_trim["clean_text"]`:
 2. Remove special characters — `re.sub(r'[^a-zA-Z\s]', ' ', text)`
 3. Collapse whitespace
 4. Remove NLTK English stopwords
-5. Lemmatize — `WordNetLemmatizer()`
+5. Lemmatize - `WordNetLemmatizer()`
 
 ---
 
@@ -135,7 +135,7 @@ All vectorizers fitted on training data only — never on validation or test.
 | Huntington's (e) | 0.621 | 0.600 | 0.610 | 30 |
 | **Macro avg** | **0.341** | **0.367** | **0.352** | 150 |
 
-**Test accuracy:** 0.3667 — **ROC-AUC:** 0.5499 (random = 0.50 for multi-class OvR)
+**Test accuracy:** 0.3667 - **ROC-AUC:** 0.5499 (random = 0.50 for multi-class OvR)
 
 ### Per-Class Accuracy (confusion matrix diagonal)
 
