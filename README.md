@@ -1,5 +1,4 @@
-# DSA Group Assignment 1 — Text Classification of Neurodegenerative Disease Research
-### DTI5125 · Data Science Applications · Summer 2026 · Group DSA_202101_1
+# Text Classification of Neurodegenerative Disease Research
 
 ---
 
